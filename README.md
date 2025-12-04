@@ -114,7 +114,7 @@ Optional: add multi-language support (DE/PL/EN)
 
 About the Developer
 
-  My name is YOUR_NAME.
+  My name is Lukas.
 I am an aspiring web developer with:
 
 a Java programming course
@@ -131,3 +131,4 @@ If you’d like to collaborate or provide feedback, feel free to reach out at:
 
 Thank you for checking out this project!
 ```
+
