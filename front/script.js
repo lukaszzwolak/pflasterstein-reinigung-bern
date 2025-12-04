@@ -66,14 +66,13 @@ if (calcForm && calcResult) {
   });
 }
 
-// ✉️ Proste „udawane” wysłanie formularza kontaktowego
 const contactForm = document.getElementById("contact-form");
 
 if (contactForm) {
   contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    // Tu w przyszłości podepniemy prawdziwą wysyłkę (Formspree / backend)
+    // podpiąć prawdziwą wysyłkę (Formspree / backend)
     alert("Danke für Ihre Anfrage! Wir melden uns so schnell wie möglich.");
 
     contactForm.reset();
