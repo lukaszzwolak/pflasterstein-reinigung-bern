@@ -1,8 +1,6 @@
-README.md (English version — copy & paste)
-
 # Pflasterstein Reinigung Bern – Landing Page
 
-A clean, modern, SEO-optimized landing page for a **pavement / stone cleaning service (Pflasterstein Reinigung)** in **Bern, Switzerland**.  
+A clean, modern, SEO-optimized landing page for a **pavement / stone cleaning service (Pflasterstein Reinigung)** in **Switzerland**.  
 The project is built both as a **real business idea** and as a **portfolio project** for web development.
 
 ## Features
@@ -131,4 +129,5 @@ If you’d like to collaborate or provide feedback, feel free to reach out at:
 
 Thank you for checking out this project!
 ```
+
 
