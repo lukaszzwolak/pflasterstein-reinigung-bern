@@ -62,29 +62,55 @@ main {
 }
 
 /* ========== HERO & NAV ========== */
-
 .hero {
-  background: linear-gradient(135deg, #e3f2ff, #f5f5f7);
+  position: relative;
+  min-height: 90vh;
   border-bottom: 1px solid var(--border-light);
-  padding: 1.5rem 1rem 2.5rem;
+  padding: 4rem 1rem 4rem;
+  background-image: url("images/glowne2.png");
+  background-size: cover;
+  background-position: center 70%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+/* przyciemnienie tła */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  z-index: 0;
 }
 
 .hero-inner {
+  position: relative;
+  z-index: 1;
   max-width: var(--max-width);
   margin: 0 auto;
-  text-align: center;
+  text-align: left;
+  padding: 2.5rem 2.25rem;
+  border-radius: 24px;
+  background: rgba(15, 23, 42, 0.78); /* „szklana” karta */
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-soft);
 }
 
 .hero h1 {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
+  font-size: 2.4rem;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+  color: #ffffff;
 }
 
-.hero p {
-  margin-top: 0;
-  margin-bottom: 1.5rem;
-  color: var(--text-muted);
+.hero-subtitle {
+  margin: 0 0 1.6rem;
+  color: #e5e7eb;
   font-size: 1rem;
+  max-width: 520px;
 }
 
 .btn-primary {
@@ -110,6 +136,92 @@ main {
 .btn-primary:active {
   transform: translateY(0);
   box-shadow: 0 5px 15px rgba(0, 87, 163, 0.3);
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar {
+  width: 100%;
+  background: #6bcf63;
+  color: white;
+  font-size: 0.9rem;
+  padding: 0.35rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
+
+.topbar-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.topbar-logo {
+  height: 28px;
+  width: auto;
+}
+
+.company-name {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.topbar-link {
+  color: white;
+  text-decoration: none;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.topbar-link:hover {
+  opacity: 1;
+}
+
+.topbar-button {
+  background: white;
+  color: #0076c7;
+  padding: 0.35rem 0.8rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.topbar-button:hover {
+  background: #f0f9ff;
+}
+
+/* układ mobilny */
+@media (max-width: 600px) {
+  .topbar-content {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .topbar-right {
+    justify-content: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+  }
 }
 
 /* NAV */
@@ -174,11 +286,12 @@ main {
   margin-top: 1.5rem;
 }
 
-.gallery-item {
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-light);
-  padding: 1rem;
-  background: #ffffff;
+.gallery-item img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
+  object-fit: cover;
 }
 
 .img-placeholder {
@@ -330,11 +443,97 @@ main {
 
 /* ========== FOOTER ========== */
 
-.footer {
+.pro-footer {
+  background: #0f172a; /* ciemne premium tło */
+  color: #e5e7eb;
+  padding: 4rem 1.5rem 2.5rem;
+  margin-top: 4rem;
+  border-top: 3px solid #5bbf47; /* zielona linia */
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+}
+
+.footer-col h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col li {
+  margin-bottom: 0.45rem;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.footer-col a {
+  color: #5bbf47; /* zielony akcent */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-col a:hover {
+  text-decoration: underline;
+}
+
+.footer-map {
+  width: 100%;
+  max-width: 180px;
+  opacity: 0.7;
+}
+
+.footer-bottom {
+  margin-top: 2.5rem;
   text-align: center;
-  padding: 1.2rem 1rem 1.8rem;
   font-size: 0.85rem;
-  color: var(--text-muted);
+  opacity: 0.65;
+}
+
+/* ======= SCROLL ==== */
+.scroll-btn {
+  position: fixed;
+  right: 1.5rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  border: none;
+  background: #5bbf47; /* zielony PflasterPro */
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.scroll-up {
+  bottom: 4.3rem; /* wyżej */
+}
+
+.scroll-down {
+  bottom: 1.5rem; /* bliżej krawędzi, niżej */
+}
+
+.scroll-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+  background: #4aa13a; /* ciemniejszy zielony przy hoverze */
 }
 
 /* ========== RESPONSIVE ========== */

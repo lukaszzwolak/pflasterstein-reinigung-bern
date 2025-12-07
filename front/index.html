@@ -29,19 +29,70 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <div class="topbar-content">
+        <div class="topbar-left">
+          <img
+            src="images/logo.png"
+            alt="PflasterPro Logo"
+            class="topbar-logo"
+          />
+          <span class="company-name">PflasterPro</span>
+        </div>
+
+        <div class="topbar-right">
+          <a href="tel:+41766064935" class="topbar-link">
+            📞 +41 76 606 49 35
+          </a>
+
+          <a href="mailto:lukasz.zwolak1607@gmail.com" class="topbar-link">
+            ✉️ Email
+          </a>
+
+          <a
+            href="https://wa.me/41766064935"
+            target="_blank"
+            class="topbar-link"
+          >
+            💬 WhatsApp
+          </a>
+
+          <a href="https://facebook.com" target="_blank" class="topbar-link">
+            🔵 Facebook
+          </a>
+
+          <a href="https://instagram.com" target="_blank" class="topbar-link">
+            📸 Instagram
+          </a>
+
+          <a href="#contact" class="topbar-button"> Kostenlos anfragen </a>
+        </div>
+      </div>
+    </div>
+
     <!-- HERO -->
     <header class="hero" id="hero">
       <div class="hero-inner">
+        <div class="hero-tag">Pflasterstein Reinigung im Kanton Bern</div>
+
         <h1>Pflasterstein Reinigung in Bern – Professionell &amp; Schnell</h1>
-        <p>
+
+        <p class="hero-subtitle">
           Saubere Terrassen, Einfahrten und Wege in Bern und im ganzen Kanton
           Bern.
         </p>
-        <button class="btn-primary" onclick="scrollToSection('contact')">
-          Kostenlose Offerte anfragen
-        </button>
 
-        <nav class="main-nav">
+        <div class="hero-cta-row">
+          <button class="btn-primary" onclick="scrollToSection('contact')">
+            Kostenlose Offerte anfragen
+          </button>
+          <span class="hero-meta">
+            Kostenlos &amp; unverbindlich • Antwort in der Regel innert 24h
+          </span>
+        </div>
+
+        <nav class="main-nav hero-nav">
           <a href="#services">Dienstleistungen</a>
           <a href="#pricing">Preise</a>
           <a href="#gallery">Vorher/Nachher</a>
@@ -119,26 +170,28 @@
       <section id="gallery" class="section">
         <h2>Vorher / Nachher</h2>
         <div class="gallery-grid">
+          <!-- LEWA STRONA — VORHER (brudne) -->
           <figure class="gallery-item">
-            <!-- na start możesz użyć zwykłego div-a zamiast obrazka -->
-            <div class="img-placeholder">Vorher</div>
+            <img
+              src="images/nachher1.png"
+              alt="Verschmutzte Pflastersteine vor der Reinigung"
+            />
             <figcaption>
               Verschmutzte Pflastersteine mit Moos und Algen.
             </figcaption>
           </figure>
 
+          <!-- PRAWA STRONA — NACHHER (czyste) -->
           <figure class="gallery-item">
-            <div class="img-placeholder">Nachher</div>
+            <img
+              src="images/vorher1.png"
+              alt="Gereinigte Pflastersteine nach Hochdruckreinigung"
+            />
             <figcaption>
-              Gereinigte Pflastersteine nach Hochdruckreinigung in Bern.
+              Gereinigte Pflastersteine nach der Reinigung.
             </figcaption>
           </figure>
         </div>
-        <p class="note">
-          Hinweis: Zu Beginn können hier Stock-Fotos verwendet werden. Später
-          ersetzen wir sie durch eigene Fotos von Ihren Projekten im Kanton
-          Bern.
-        </p>
       </section>
 
       <!-- KALKULATOR WYCENY -->
@@ -241,16 +294,18 @@
             <h3>Direkter Kontakt</h3>
             <p>
               <strong>Telefon:</strong>
-              <a href="tel:+41XXXXXXXXX">+41 XX XXX XX XX</a>
+              <a href="tel:+41766064935">+41766064935</a>
             </p>
             <p>
               <strong>E-Mail:</strong>
-              <a href="mailto:deine-mail@example.com">deine-mail@example.com</a>
+              <a href="mailto:lukasz.zwolak1607@gmail.com"
+                >lukasz.zwolak1607@gmail.com</a
+              >
             </p>
             <p>
               <strong>WhatsApp:</strong>
               <a
-                href="https://wa.me/41XXXXXXXXX?text=Ich%20möchte%20eine%20Offerte%20für%20Pflasterstein%20Reinigung%20in%20Bern."
+                href="https://wa.me/41766064935?text=Ich%20möchte%20eine%20Offerte%20für%20Pflasterstein%20Reinigung%20in%20Bern."
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -278,12 +333,76 @@
       </section>
     </main>
 
-    <footer class="footer">
-      <p>
-        © <span id="year"></span> Pflasterstein Reinigung in Bern. Alle Rechte
-        vorbehalten.
-      </p>
+    <footer class="pro-footer">
+      <div class="footer-inner">
+        <div class="footer-col">
+          <h3>Dienstleistungen</h3>
+          <ul>
+            <li>Pflasterstein Reinigung</li>
+            <li>Terrassenreinigung</li>
+            <li>Einfahrt Reinigung</li>
+            <li>Moos & Algenentfernung</li>
+            <li>Hochdruckreinigung</li>
+            <li>Imprägnierung</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Kontakt</h3>
+          <ul>
+            <li>📍 Bern & Kanton Bern</li>
+            <li>📞 <a href="tel:+41766064935">+41 76 606 49 35</a></li>
+            <li>
+              ✉️
+              <a href="mailto:lukasz.zwolak1607@gmail.com"
+                >lukasz.zwolak1607@gmail.com</a
+              >
+            </li>
+            <li>
+              💬
+              <a href="https://wa.me/41766064935" target="_blank"
+                >WhatsApp Nachricht</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Öffnungszeiten</h3>
+          <ul>
+            <li>MO–FR: 08:00 – 18:00</li>
+            <li>SA: 09:00 – 16:00</li>
+            <li>SO: nur WhatsApp, e-mail</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Hier finden Sie uns</h3>
+          <img src="images/map-placeholder.png" alt="Map" class="footer-map" />
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © <span id="year"></span> PflasterPro – Professionelle Pflasterstein
+        Reinigung in Bern
+      </div>
     </footer>
+
+    <button
+      class="scroll-btn scroll-up"
+      id="scroll-up"
+      aria-label="Nach oben scrollen"
+    >
+      ▲
+    </button>
+
+    <button
+      class="scroll-btn scroll-down"
+      id="scroll-down"
+      aria-label="Nach unten scrollen"
+    >
+      ▼
+    </button>
 
     <script src="script.js"></script>
   </body>
