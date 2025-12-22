@@ -4,8 +4,7 @@ if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
 }
 
-// ================== PŁYNNE, PRAWIE LINIOWE PRZEWIJANIE ==================
-
+// ================== SMOOTH SCROLL ==================
 function smoothScrollTo(targetY, duration = 600) {
   const startY = window.scrollY;
   const distance = targetY - startY;
@@ -13,34 +12,23 @@ function smoothScrollTo(targetY, duration = 600) {
 
   function animate(now) {
     const elapsed = now - startTime;
-    const t = Math.min(elapsed / duration, 1); // 0–1
-
-    // ruch liniowy – stała prędkość
-    const eased = t;
-
-    window.scrollTo(0, startY + distance * eased);
-
-    if (t < 1) {
-      requestAnimationFrame(animate);
-    }
+    const t = Math.min(elapsed / duration, 1);
+    window.scrollTo(0, startY + distance * t);
+    if (t < 1) requestAnimationFrame(animate);
   }
 
   requestAnimationFrame(animate);
 }
 
-// przewijanie do sekcji (używane też w HTML: onclick="scrollToSection('contact')")
 function scrollToSection(id) {
   const el = document.getElementById(id);
   if (!el) return;
-
-  const top = el.getBoundingClientRect().top + window.scrollY - 80;
+  const top = el.getBoundingClientRect().top + window.scrollY - 90;
   smoothScrollTo(top, 600);
 }
 
-// Smooth scroll dla linków w nawigacjach
-const navLinks = document.querySelectorAll(
-  '.main-nav a[href^="#"], .header-nav a[href^="#"]'
-);
+// ================== NAV CLICK SCROLL ==================
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 
 navLinks.forEach((link) => {
   link.addEventListener("click", function (e) {
@@ -50,8 +38,36 @@ navLinks.forEach((link) => {
   });
 });
 
-// ================== PRZYCISKI SCROLL-UP / SCROLL-DOWN ==================
+// ================== ACTIVE MENU ON SCROLL ==================
+const sections = Array.from(
+  document.querySelectorAll("main section[id]")
+);
 
+function setActiveNav() {
+  const scrollY = window.scrollY + 120;
+
+  let currentSection = null;
+
+  sections.forEach((section) => {
+    if (scrollY >= section.offsetTop) {
+      currentSection = section.getAttribute("id");
+    }
+  });
+
+  navLinks.forEach((link) => {
+    const linkTarget = link.getAttribute("href").substring(1);
+    if (linkTarget === currentSection) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", setActiveNav);
+window.addEventListener("load", setActiveNav);
+
+// ================== SCROLL BUTTONS ==================
 const scrollUpBtn = document.getElementById("scroll-up");
 const scrollDownBtn = document.getElementById("scroll-down");
 
@@ -69,8 +85,7 @@ if (scrollDownBtn) {
   });
 }
 
-// ================== KALKULATOR WYCENY ==================
-
+// ================== PRICE CALCULATOR ==================
 const calcForm = document.getElementById("calc-form");
 const calcResult = document.getElementById("calc-result");
 
@@ -78,50 +93,35 @@ if (calcForm && calcResult) {
   calcForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const areaInput = document.getElementById("area");
-    const serviceSelect = document.getElementById("service-type");
-    const impregnationCheckbox = document.getElementById("impregnation");
-
-    const area = parseFloat(areaInput.value);
-    const serviceType = serviceSelect.value;
-    const impregnation = impregnationCheckbox.checked;
+    const area = parseFloat(document.getElementById("area").value);
+    const serviceType = document.getElementById("service-type").value;
+    const impregnation = document.getElementById("impregnation").checked;
 
     if (isNaN(area) || area <= 0) {
-      calcResult.textContent = "Bitte geben Sie eine gültige Fläche in m² ein.";
+      calcResult.textContent = "Bitte geben Sie eine gültige Fläche ein.";
       return;
     }
 
-    let pricePerM2 = 6; // podstawowa Hochdruckreinigung
-
-    if (serviceType === "deep") {
-      pricePerM2 = 7.5;
-    } else if (serviceType === "full") {
-      pricePerM2 = 9;
-    }
-
-    if (impregnation) {
-      pricePerM2 += 1.5;
-    }
+    let pricePerM2 = 6;
+    if (serviceType === "deep") pricePerM2 = 7.5;
+    if (serviceType === "full") pricePerM2 = 9;
+    if (impregnation) pricePerM2 += 1.5;
 
     const estimated = area * pricePerM2;
 
     calcResult.textContent =
       `Ungefähre Kosten: ca. ${estimated.toFixed(2)} CHF ` +
-      `(ca. ${pricePerM2.toFixed(2)} CHF/m²). ` +
-      "Dies ist nur eine Schätzung – die endgültige Offerte erhalten Sie nach Ihrer Anfrage.";
+      `(ca. ${pricePerM2.toFixed(2)} CHF/m²).`;
   });
 }
 
-// ================== FORMULARZ KONTAKTOWY (FAKE WYSYŁKA) ==================
-
+// ================== CONTACT FORM (FAKE SEND) ==================
 const contactForm = document.getElementById("contact-form");
 
 if (contactForm) {
   contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
-
     alert("Danke für Ihre Anfrage! Wir melden uns so schnell wie möglich.");
-
     contactForm.reset();
   });
 }
