@@ -488,6 +488,22 @@ textarea:focus {
   bottom: 1.5rem;
 }
 
+/* ===== FORCE: disable mobile menu everywhere ===== */
+.nav-burger,
+.mobile-overlay,
+.mobile-menu {
+  display: none !important;
+}
+
+.nav-links {
+  display: flex !important;
+}
+
+.nav-cta {
+  display: inline-block !important;
+}
+
+
 /* ===== responsive ===== */
 @media (max-width: 900px) {
   .contact-grid {
