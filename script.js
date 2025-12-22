@@ -1,8 +1,6 @@
-// ================== ROK W STOPCE ==================
+// ================== YEAR IN FOOTER ==================
 const yearSpan = document.getElementById("year");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
-}
+if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
 // ================== SMOOTH SCROLL ==================
 function smoothScrollTo(targetY, duration = 600) {
@@ -23,58 +21,84 @@ function smoothScrollTo(targetY, duration = 600) {
 function scrollToSection(id) {
   const el = document.getElementById(id);
   if (!el) return;
+
+  // Sticky offset already handled by CSS scroll-margin-top,
+  // but we keep a small offset for safety.
   const top = el.getBoundingClientRect().top + window.scrollY - 90;
   smoothScrollTo(top, 600);
 }
 
-// ================== NAV CLICK SCROLL ==================
-const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+// ================== NAV LINKS (desktop + mobile) ==================
+const allNavLinks = document.querySelectorAll(
+  '.nav-links a[href^="#"], .mobile-nav a[href^="#"]'
+);
 
-navLinks.forEach((link) => {
-  link.addEventListener("click", function (e) {
+allNavLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
     e.preventDefault();
-    const targetId = this.getAttribute("href").substring(1);
+    const targetId = link.getAttribute("href").substring(1);
     scrollToSection(targetId);
+    closeMobileMenu(); // close menu on mobile click
   });
 });
 
 // ================== ACTIVE MENU ON SCROLL ==================
-const sections = Array.from(
-  document.querySelectorAll("main section[id]")
-);
+const sections = Array.from(document.querySelectorAll("main section[id]"));
 
 function setActiveNav() {
-  const scrollY = window.scrollY + 120;
+  const scrollY = window.scrollY + 140;
 
-  let currentSection = null;
-
+  let current = null;
   sections.forEach((section) => {
-    if (scrollY >= section.offsetTop) {
-      currentSection = section.getAttribute("id");
-    }
+    if (scrollY >= section.offsetTop) current = section.id;
   });
 
-  navLinks.forEach((link) => {
-    const linkTarget = link.getAttribute("href").substring(1);
-    if (linkTarget === currentSection) {
-      link.classList.add("active");
-    } else {
-      link.classList.remove("active");
-    }
+  allNavLinks.forEach((link) => {
+    const target = link.getAttribute("href").substring(1);
+    if (target === current) link.classList.add("active");
+    else link.classList.remove("active");
   });
 }
 
 window.addEventListener("scroll", setActiveNav);
 window.addEventListener("load", setActiveNav);
 
+// ================== MOBILE MENU (hamburger) ==================
+const burger = document.getElementById("nav-burger");
+const mobileMenu = document.getElementById("mobile-menu");
+const overlay = document.getElementById("mobile-overlay");
+const mobileClose = document.getElementById("mobile-close");
+
+function openMobileMenu() {
+  if (!mobileMenu || !overlay || !burger) return;
+  mobileMenu.hidden = false;
+  overlay.hidden = false;
+  burger.setAttribute("aria-expanded", "true");
+  document.body.style.overflow = "hidden"; // prevent background scroll
+}
+
+function closeMobileMenu() {
+  if (!mobileMenu || !overlay || !burger) return;
+  mobileMenu.hidden = true;
+  overlay.hidden = true;
+  burger.setAttribute("aria-expanded", "false");
+  document.body.style.overflow = "";
+}
+
+if (burger) burger.addEventListener("click", openMobileMenu);
+if (mobileClose) mobileClose.addEventListener("click", closeMobileMenu);
+if (overlay) overlay.addEventListener("click", closeMobileMenu);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeMobileMenu();
+});
+
 // ================== SCROLL BUTTONS ==================
 const scrollUpBtn = document.getElementById("scroll-up");
 const scrollDownBtn = document.getElementById("scroll-down");
 
 if (scrollUpBtn) {
-  scrollUpBtn.addEventListener("click", () => {
-    smoothScrollTo(0, 600);
-  });
+  scrollUpBtn.addEventListener("click", () => smoothScrollTo(0, 600));
 }
 
 if (scrollDownBtn) {
@@ -117,7 +141,6 @@ if (calcForm && calcResult) {
 
 // ================== CONTACT FORM (FAKE SEND) ==================
 const contactForm = document.getElementById("contact-form");
-
 if (contactForm) {
   contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -125,3 +148,10 @@ if (contactForm) {
     contactForm.reset();
   });
 }
+
+// ================== CLOSE MOBILE MENU ON DESKTOP RESIZE ==================
+window.addEventListener("resize", () => {
+  if (window.innerWidth >= 721) {
+    closeMobileMenu();
+  }
+});

@@ -40,11 +40,39 @@
     <meta name="geo.region" content="CH-BE" />
     <meta name="geo.placename" content="Bern" />
 
+    <!-- LocalBusiness schema (SEO) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "PflasterPro",
+        "url": "https://www.pflasterpro.ch/",
+        "telephone": "+41766064935",
+        "email": "lukasz.zwolak1607@gmail.com",
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Kanton Bern"
+          },
+          {
+            "@type": "City",
+            "name": "Bern"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "CH",
+          "addressRegion": "BE",
+          "addressLocality": "Bern"
+        }
+      }
+    </script>
+
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <!-- TOP CONTACT BAR (Osmo-like) -->
+    <!-- TOP CONTACT BAR -->
     <div class="topbar">
       <div class="container wide topbar-inner">
         <div class="topbar-left">
@@ -70,7 +98,7 @@
       </div>
     </div>
 
-    <!-- WHITE NAV (sticky) -->
+    <!-- NAV (sticky) -->
     <header class="nav">
       <div class="container wide nav-inner">
         <a class="brand" href="#top" aria-label="PflasterPro Home">
@@ -78,6 +106,7 @@
           <span>PflasterPro</span>
         </a>
 
+        <!-- Desktop links -->
         <nav class="nav-links" aria-label="Hauptnavigation">
           <a href="#services">Dienstleistungen</a>
           <a href="#process">Ablauf</a>
@@ -89,8 +118,69 @@
           <a href="#contact">Kontakt</a>
         </nav>
 
-        <a class="nav-cta" href="#contact">Kostenlos anfragen</a>
+        <div class="nav-actions">
+          <a class="nav-cta" href="#contact">Kostenlos anfragen</a>
+
+          <!-- Hamburger (mobile) -->
+          <button
+            class="nav-burger"
+            id="nav-burger"
+            type="button"
+            aria-label="Menü öffnen"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+          >
+            <span></span><span></span><span></span>
+          </button>
+        </div>
       </div>
+
+      <!-- Mobile menu overlay + panel -->
+      <div class="mobile-overlay" id="mobile-overlay" hidden></div>
+
+      <nav
+        class="mobile-menu"
+        id="mobile-menu"
+        aria-label="Mobile Navigation"
+        hidden
+      >
+        <div class="mobile-menu-head">
+          <div class="mobile-brand">
+            <img src="images/logo.png" alt="PflasterPro Logo" />
+            <span>PflasterPro</span>
+          </div>
+          <button
+            class="mobile-close"
+            id="mobile-close"
+            type="button"
+            aria-label="Menü schließen"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="mobile-nav">
+          <a href="#services">Dienstleistungen</a>
+          <a href="#process">Ablauf</a>
+          <a href="#pricing">Preise</a>
+          <a href="#gallery">Vorher / Nachher</a>
+          <a href="#calculator">Preisrechner</a>
+          <a href="#area">Einsatzgebiet</a>
+          <a href="#about">Über mich</a>
+          <a href="#contact">Kontakt</a>
+        </div>
+
+        <div class="mobile-cta-row">
+          <a class="mobile-cta" href="#contact">Kostenlos anfragen</a>
+          <a
+            class="mobile-whatsapp"
+            href="https://wa.me/41766064935"
+            target="_blank"
+            rel="noopener noreferrer"
+            >WhatsApp</a
+          >
+        </div>
+      </nav>
     </header>
 
     <main id="top">
@@ -326,7 +416,7 @@
       </section>
     </main>
 
-    <!-- ✅ FOOTER (TWÓJ STARY) -->
+    <!-- FOOTER (Twoj premium footer) -->
     <footer class="pro-footer">
       <div class="container wide footer-inner">
         <div class="footer-col">
