@@ -27,19 +27,14 @@ function scrollToSection(id) {
   smoothScrollTo(top, 600);
 }
 
-// ================== NAV LINKS (desktop + mobile) ==================
-const allNavLinks = document.querySelectorAll(
-  '.nav-links a[href^="#"], .mobile-nav a[href^="#"]'
-);
+// ================== NAV LINKS (single nav) ==================
+const allNavLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 
 allNavLinks.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     const targetId = link.getAttribute("href").substring(1);
     scrollToSection(targetId);
-
-    // Important: close menu after selecting an item (mobile UX)
-    closeMobileMenu();
   });
 });
 
@@ -63,59 +58,6 @@ function setActiveNav() {
 
 window.addEventListener("scroll", setActiveNav);
 window.addEventListener("load", setActiveNav);
-
-// ================== MOBILE MENU (hamburger) ==================
-const burger = document.getElementById("nav-burger");
-const mobileMenu = document.getElementById("mobile-menu");
-const overlay = document.getElementById("mobile-overlay");
-const mobileClose = document.getElementById("mobile-close");
-
-function openMobileMenu() {
-  if (!mobileMenu || !overlay || !burger) return;
-
-  mobileMenu.hidden = false;
-  overlay.hidden = false;
-
-  burger.setAttribute("aria-expanded", "true");
-  document.body.classList.add("menu-open");
-  document.body.style.overflow = "hidden";
-}
-
-function closeMobileMenu() {
-  if (!mobileMenu || !overlay || !burger) return;
-
-  mobileMenu.hidden = true;
-  overlay.hidden = true;
-
-  burger.setAttribute("aria-expanded", "false");
-  document.body.classList.remove("menu-open");
-  document.body.style.overflow = "";
-}
-
-if (burger) {
-  burger.addEventListener("click", (e) => {
-    e.preventDefault();
-    openMobileMenu();
-  });
-}
-
-if (mobileClose) {
-  mobileClose.addEventListener("click", (e) => {
-    e.preventDefault();
-    closeMobileMenu();
-  });
-}
-
-if (overlay) {
-  overlay.addEventListener("click", (e) => {
-    e.preventDefault();
-    closeMobileMenu();
-  });
-}
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeMobileMenu();
-});
 
 // ================== SCROLL BUTTONS ==================
 const scrollUpBtn = document.getElementById("scroll-up");
@@ -172,10 +114,3 @@ if (contactForm) {
     contactForm.reset();
   });
 }
-
-// ================== CLOSE MOBILE MENU ON DESKTOP RESIZE ==================
-window.addEventListener("resize", () => {
-  if (window.innerWidth >= 721) {
-    closeMobileMenu();
-  }
-});
