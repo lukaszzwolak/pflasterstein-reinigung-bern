@@ -22,8 +22,7 @@ function scrollToSection(id) {
   const el = document.getElementById(id);
   if (!el) return;
 
-  // Sticky offset already handled by CSS scroll-margin-top,
-  // but we keep a small offset for safety.
+  // CSS handles scroll-margin-top, keep a small offset for safety.
   const top = el.getBoundingClientRect().top + window.scrollY - 90;
   smoothScrollTo(top, 600);
 }
@@ -38,7 +37,9 @@ allNavLinks.forEach((link) => {
     e.preventDefault();
     const targetId = link.getAttribute("href").substring(1);
     scrollToSection(targetId);
-    closeMobileMenu(); // close menu on mobile click
+
+    // Important: close menu after selecting an item (mobile UX)
+    closeMobileMenu();
   });
 });
 
@@ -71,23 +72,46 @@ const mobileClose = document.getElementById("mobile-close");
 
 function openMobileMenu() {
   if (!mobileMenu || !overlay || !burger) return;
+
   mobileMenu.hidden = false;
   overlay.hidden = false;
+
   burger.setAttribute("aria-expanded", "true");
-  document.body.style.overflow = "hidden"; // prevent background scroll
+  document.body.classList.add("menu-open");
+  document.body.style.overflow = "hidden";
 }
 
 function closeMobileMenu() {
   if (!mobileMenu || !overlay || !burger) return;
+
   mobileMenu.hidden = true;
   overlay.hidden = true;
+
   burger.setAttribute("aria-expanded", "false");
+  document.body.classList.remove("menu-open");
   document.body.style.overflow = "";
 }
 
-if (burger) burger.addEventListener("click", openMobileMenu);
-if (mobileClose) mobileClose.addEventListener("click", closeMobileMenu);
-if (overlay) overlay.addEventListener("click", closeMobileMenu);
+if (burger) {
+  burger.addEventListener("click", (e) => {
+    e.preventDefault();
+    openMobileMenu();
+  });
+}
+
+if (mobileClose) {
+  mobileClose.addEventListener("click", (e) => {
+    e.preventDefault();
+    closeMobileMenu();
+  });
+}
+
+if (overlay) {
+  overlay.addEventListener("click", (e) => {
+    e.preventDefault();
+    closeMobileMenu();
+  });
+}
 
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeMobileMenu();
