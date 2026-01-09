@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="../favicon-16.png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="../favicon-180.png" />
+
+    <title>Preise – PflasterPro Bern</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="canonical" href="https://www.pflasterpro.ch/pages/preise.html" />
+    <meta
+      name="description"
+      content="Preise für Pflasterstein Reinigung in Bern: Richtwerte ab ca. 6–12 CHF/m². Der Preis hängt von Verschmutzung, Fläche und Zugänglichkeit ab."
+    />
+
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/layout.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/pages/preise.css" />
+  </head>
+
+  <body>
+    <div id="topbar-slot"></div>
+    <div id="header-slot"></div>
+
+    <main id="top">
+      <section class="pagehead">
+        <div class="container">
+          <h1>Preise</h1>
+          <p class="lead">
+            Jeder Belag ist anders. Hier finden Sie Richtwerte – die genaue Offerte erhalten Sie nach kurzer Beschreibung oder Fotos.
+          </p>
+          <div class="pagehead-cta">
+            <a class="btn" href="kontakt.html">Kostenlose Offerte anfragen</a>
+            <span class="cta-note">Antwort meist innert 24h</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <h2>Richtwerte</h2>
+          <p>
+            Als Orientierung liegen die Preise typischerweise <strong>ab ca. 6–12 CHF pro m²</strong>,
+            je nach Verschmutzung, Oberfläche und Zugänglichkeit.
+          </p>
+
+          <h2>Was beeinflusst den Preis?</h2>
+          <ul class="bullets">
+            <li>Verschmutzungsgrad (Moos/Algen, Öl, Flecken)</li>
+            <li>Material (Beton, Naturstein, Platten)</li>
+            <li>Zugänglichkeit und Wasseranschluss</li>
+            <li>Optionale Imprägnierung</li>
+          </ul>
+
+          <h2 style="margin-top: 1.4rem">Preisrechner (Richtwert)</h2>
+
+          <form id="calc-form" class="calc-form">
+            <label>
+              Fläche (m²)
+              <input id="area" type="number" min="1" required />
+            </label>
+
+            <label>
+              Service
+              <select id="service-type">
+                <option value="basic">Standard (ab 6 CHF/m²)</option>
+                <option value="deep">Intensiv (ab 7.5 CHF/m²)</option>
+                <option value="full">Premium (ab 9 CHF/m²)</option>
+              </select>
+            </label>
+
+            <label class="checkbox">
+              <input id="impregnation" type="checkbox" />
+              Imprägnierung (+1.5 CHF/m²)
+            </label>
+
+            <button type="submit" class="btn">Berechnen</button>
+          </form>
+
+          <div id="calc-result" class="calc-result" aria-live="polite"></div>
+
+          <p style="margin-top: 1rem">
+            <a class="btn" href="kontakt.html">Jetzt Offerte anfragen</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-slot"></div>
+
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/includes.js"></script>
+    <script src="../assets/js/pages/preise-calculator.js"></script>
+  </body>
+</html>

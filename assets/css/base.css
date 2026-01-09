@@ -1,0 +1,49 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --green: #9cc84b;
+  --blue: #0057a3;
+
+  --text: #1f2933;
+  --muted: #6b7280;
+
+  --border: #e5e7eb;
+  --page: #ffffff;
+
+  --container: 1100px;
+  --wide: 1320px;
+  --gutter: 22px;
+
+  --nav-offset: 110px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  color: var(--text);
+  background: var(--page);
+  font-size: 16.5px;
+  line-height: 1.75;
+}
+
+section[id] {
+  scroll-margin-top: var(--nav-offset);
+}
+
+.container {
+  width: min(var(--container), 100% - (var(--gutter) * 2));
+  margin-inline: auto;
+}
+
+.container.wide {
+  width: min(var(--wide), 100% - (var(--gutter) * 2));
+  margin-inline: auto;
+}
